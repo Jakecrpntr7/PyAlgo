@@ -3,7 +3,7 @@
 # Bubble sort is an academic sorting algorithm that is often taught as a starting point for learning
 # about sorting algorithms. It is too slow to actually use in production.
 # Time Complexity O(N^2)
-def bubble_sort(data: list) -> None:
+def bubble_sort(data: list, comparator=lambda a, b: a > b) -> None:
     """
     Bubble sort works by 'Bubbling' the largest value to the end of the array.
     Example data:    7   3   1
@@ -17,6 +17,7 @@ def bubble_sort(data: list) -> None:
             3 <-> 1 7 -> 1 3 7
     Result: 1 3 7
     :param data: List to be sorted.
+    :param comparator: Comparison function to determine sort direction.
     :return: None. Side effect that array is sorted.
     """
     array_length = len(data)
@@ -24,6 +25,6 @@ def bubble_sort(data: list) -> None:
     for i in range(array_length):
         # Inner loop bubbles largest value into position i.
         for j in range(0, array_length - i - 1):
-            if data[j] > data[j + 1]:
+            if comparator(data[j], data[j + 1]):
                 # Swap values if value is larger than the value to the right.
                 data[j], data[j + 1] = data[j + 1], data[j]
